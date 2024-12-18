@@ -104,6 +104,6 @@ app.get('/favorites/:username', async (req, res) => {
     }
 });
 
-app.listen(PORT, HOST, () => {
+app.listen(3000, HOST, () => {
     console.log(`Server running on http://0.0.0.0:${PORT}`);
 });

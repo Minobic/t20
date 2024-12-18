@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
+const HOST = '0.0.0.0';
 
 const app = express();
 app.use(express.static('.'));
@@ -103,6 +104,6 @@ app.get('/favorites/:username', async (req, res) => {
     }
 });
 
-app.listen(3000, () => {
-    console.log('Server running on http://localhost:3000');
+app.listen(PORT, HOST, () => {
+    console.log(`Server running on http://0.0.0.0:${PORT}`);
 });

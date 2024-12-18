@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="icon">
+            <div>
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 8.95439L17.6352 7.82736C19.0102 7.55235 20 6.34501 20 4.94274C20 3.08637 18.3017 1.69406 16.4813 2.05813L12.4117 2.87206C11.0094 3.15252 10 4.38376 10 5.8138V13.8895C9.41165 13.5492 8.72857 13.3544 8 13.3544C5.79086 13.3544 4 15.1453 4 17.3544C4 19.5635 5.79086 21.3544 8 21.3544C10.2091 21.3544 12 19.5635 12 17.3544V8.95439ZM16.8736 4.01929L12.8039 4.83322C12.3365 4.92671 12 5.33712 12 5.8138V6.91479L17.2429 5.8662C17.6831 5.77816 18 5.39165 18 4.94274C18 4.34846 17.4563 3.90274 16.8736 4.01929ZM10 17.3544C10 16.2498 9.10457 15.3544 8 15.3544C6.89543 15.3544 6 16.2498 6 17.3544C6 18.459 6.89543 19.3544 8 19.3544C9.10457 19.3544 10 18.459 10 17.3544Z" fill="black"/>
+                </svg>
+            </div>
+        </div>
+
+        <span>Hi, </span><span id="username"></span>
+        
+        <div class="SearchBar">
+            <input id="searchInput" type="search" placeholder="Search for songs">
+            <div id="searchResults" class="search-results"></div>
+        </div>
+    
+        <div class="icon" id="favIcon">
+            <div>
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <title>favourite</title>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 21.3544L10.5451 20.0376C5.45455 15.6545 2 12.5455 2 9.27273C2 6.54545 4.09091 4.45455 6.81818 4.45455C8.36364 4.45455 9.81818 5.45455 12 7.63636C14.1818 5.45455 15.6364 4.45455 17.1818 4.45455C19.9091 4.45455 22 6.54545 22 9.27273C22 12.5455 18.5455 15.6545 13.4545 20.0376L12 21.3544Z" fill="black"/>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="icon" id="moodIcon">
+            <div>
+                <svg width="30" height="30" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="40" fill="white" stroke="black" stroke-width="5" />
+                    <circle cx="35" cy="40" r="5" fill="black" />
+                    <circle cx="65" cy="40" r="5" fill="black" />
+                    <path d="M30 55 Q50 70, 70 55" stroke="black" stroke-width="5" fill="transparent" />
+                </svg>
+            </div>
+        </div>
+        <div class="icon" id="logout">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="30" height="30" viewBox="0 2 21 28" version="1.1">
+                    <title>logout</title>
+                    <path d="M0 9.875v12.219c0 1.125 0.469 2.125 1.219 2.906 0.75 0.75 1.719 1.156 2.844 1.156h6.125v-2.531h-6.125c-0.844 0-1.5-0.688-1.5-1.531v-12.219c0-0.844 0.656-1.5 1.5-1.5h6.125v-2.563h-6.125c-1.125 0-2.094 0.438-2.844 1.188-0.75 0.781-1.219 1.75-1.219 2.875zM6.719 13.563v4.875c0 0.563 0.5 1.031 1.063 1.031h5.656v3.844c0 0.344 0.188 0.625 0.5 0.781 0.125 0.031 0.25 0.031 0.313 0.031 0.219 0 0.406-0.063 0.563-0.219l7.344-7.344c0.344-0.281 0.313-0.844 0-1.156l-7.344-7.313c-0.438-0.469-1.375-0.188-1.375 0.563v3.875h-5.656c-0.563 0-1.063 0.469-1.063 1.031z"/>
+                </svg>
+            </div>
+        </div>
+    </header>
+    <div id="moodModal" class="mood-modal" style="display: none;">
+        <div class="mood-options">
+            <button class="mood-option" data-mood="happy">Happy</button>
+            <button class="mood-option" data-mood="sad">Sad</button>
+            <button class="mood-option" data-mood="energetic">Energetic</button>
+            <button class="mood-option" data-mood="chill">Chill</button>
+            <button class="mood-option" data-mood="excited">Excited</button>
+            <button class="mood-option" data-mood="relaxed">Relaxed</button>
+            <button class="mood-option" data-mood="angry">Angry</button>
+            <button class="mood-option" data-mood="hopeful">Hopeful</button>
+            <button class="mood-option" data-mood="inspired">Inspired</button>
+            <button class="mood-option" data-mood="romantic">Romantic</button>
+            <button class="mood-option" data-mood="adventurous">Adventurous</button>
+            <button class="mood-option" data-mood="nostalgic">Nostalgic</button>
+            <button class="mood-option" data-mood="peaceful">Peaceful</button>
+            <button class="mood-option" data-mood="confident">Confident</button>
+            <button class="mood-option" data-mood="melancholic">Melancholic</button>
+            <button class="mood-option" data-mood="playful">Playful</button>
+            <button class="mood-option" data-mood="mellow">Mellow</button>
+            <button class="mood-option" data-mood="bored">Bored</button>
+            <button class="mood-option" data-mood="creative">Creative</button>
+            <button class="mood-option" data-mood="serene">Serene</button>
+            <button class="mood-option" data-mood="thoughtful">Thoughtful</button>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="box1">
+            <div class="poster" id="posterContainer">
+                <img id="songPoster" src="/media/poster.jpg" alt="Song Poster">
+            </div>
+            <div id="lyricsContainer" class="lyrics-container" style="display: none;"></div>
+            <div class="info">
+                <h1 id="songTitle">Starboy</h1>
+                <p id="songArtist">The Weekend, Daft Punk</p>
+                <button id="showLyricsButton">Lyrics</button>
+            </div>
+        </div>
+    
+        <div class="box2">
+            <audio id="audioPlayer" controls></audio>
+            <div id="favSongIcon">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 21.3544L10.5451 20.0376C5.45455 15.6545 2 12.5455 2 9.27273C2 6.54545 4.09091 4.45455 6.81818 4.45455C8.36364 4.45455 9.81818 5.45455 12 7.63636C14.1818 5.45455 15.6364 4.45455 17.1818 4.45455C19.9091 4.45455 22 6.54545 22 9.27273C22 12.5455 18.5455 15.6545 13.4545 20.0376L12 21.3544Z" fill="rgb(85, 84, 84)"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

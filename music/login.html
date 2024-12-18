@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="loginStyle.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="LoginBox">
+        <div> 
+            <h1>Login</h1> 
+        </div>
+    
+        <form id="loginForm">
+            <label for="username">
+                <input class="inputBox" id="username" type="text" placeholder="Enter username">
+                <i class='bx bxs-user'></i>
+            </label>
+            
+
+            <label for="password">
+                <input class="inputBox" id="password" type="password" placeholder="Enter password">
+                <i class='bx bxs-lock-alt'></i>
+            </label>
+            
+            <button>Login</button>
+            <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+        </form>
+    </div>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        try {
+            const response = await fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password }),
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                localStorage.setItem('username', username);
+                window.location.href = 'index.html';
+            } else {
+                alert(result.message || 'Login failed');
+            }
+            } catch (err) {
+                console.error('Error during login:', err);
+                alert('An error occurred. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>

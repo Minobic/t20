@@ -99,7 +99,7 @@ async function toggleFavorite(song) {
         return;
     }
 
-    const response = await fetch('http://localhost:3000/addFavorite', {
+    const response = await fetch('http://https://t20live.tech/music:3000/addFavorite', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -119,7 +119,7 @@ async function fetchFavorites() {
         return [];
     }
 
-    const response = await fetch(`http://localhost:3000/favorites/${username}`);
+    const response = await fetch(`http://https://t20live.tech/music:3000/favorites/${username}`);
     const data = await response.json();
     return data.favorites;
 }

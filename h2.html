@@ -1,0 +1,42 @@
+// Sync Users
+final tempUsers = await fetchTempUsers();
+for (var user in tempUsers) {
+  // Create a new user in the API
+  bool success = await apiService.signUpUser (
+    user.username,
+    user.firstName,
+    user.lastName,
+    user.email,
+    user.phone ?? '',
+    user.address ?? '',
+    user.role,
+    user.password,
+  );
+
+  if (success) {
+    // Retrieve the user ID from the API using the email
+    int? createdUser Id = await apiService.getUser Id(user.email); // Use your existing method
+
+    if (createdUser Id != null) { // Check if the ID retrieval was successful
+      // Use a temporary variable to hold the new user ID
+      final updatedUser  = UserModel(
+        userId: createdUser Id, // Set the new user ID here
+        username: user.username,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phone: user.phone,
+        address: user.address,
+        role: user.role,
+        password: user.password,
+      );
+
+      await insertTempUser (updatedUser ); // Insert the user with the correct ID
+      await deleteTempUser (user.email); // Delete from temp after successful sync
+    } else {
+      print('Failed to retrieve user ID for: ${user.email}');
+    }
+  } else {
+    print('Failed to sync user: ${user.email}');
+  }
+}
